@@ -35,3 +35,4 @@ print(productos)
 
 # cerrar conexion
 conexion.close()
+
