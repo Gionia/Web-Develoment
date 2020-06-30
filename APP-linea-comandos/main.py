@@ -15,7 +15,7 @@ print(
         -login"""
 )
 
-accion = input("¿Que desea hacer?")
+accion = input("¿Que desea hacer? ")
 accion = accion.upper()
 hacer = acciones.Acciones()
 if accion == "REGISTRO":

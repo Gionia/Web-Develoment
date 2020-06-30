@@ -1,15 +1,13 @@
-import mysql.connector
 import datetime
+import hashlib
+import usuarios.conexion as conexion
 
-database = mysql.connector.connect(
-    host="localhost", user="root", password="", database="master_python", port=3306
-)
-cursor = database.cursor(buffered=True)
+database, cursor = conexion.conectar()
 
 
 class Usuario:
     """
-    Una clase donde se guardan los datos del usuario
+    Una clase donde se guardan e identifican los usuarios en la base de datos
     """
 
     def __init__(self, nombre, apellido, email, password, sexo):
@@ -20,20 +18,32 @@ class Usuario:
         self.sexo = sexo
 
     def registrar(self):
+        password_ = hashlib.sha256()
+        password_.update(self.password.encode("utf8"))
         fecha = datetime.datetime.now()
         sql = "insert into usuarios values(null, %s, %s, %s, %s, %s, %s)"
         usuario_ = (
             self.nombre,
             self.apellido,
             self.email,
-            self.password,
+            password_.hexdigest(),
             fecha,
             self.sexo,
         )
-        cursor.execute(sql, usuario_)
-        database.commit()
-        return [cursor.rowcount, self]
+        try:
+            cursor.execute(sql, usuario_)
+            database.commit()
+            result = [cursor.rowcount, self]
+        except:
+            result = [0, self]
+        return result
 
     def identificar(self):
-        print("Si se pudo")
-        pass
+        sql = "select * from usuarios where email = %s and password = %s;"
+        password_ = hashlib.sha256()  # para cifrar la contraseña y buscar
+        password_.update(self.password.encode("utf8"))
+        items = (self.email, password_.hexdigest())
+        cursor.execute(sql, items)
+        result = cursor.fetchone()
+
+        return result

@@ -4,10 +4,12 @@ import usuarios.usuario as modelo
 class Acciones:
     """
     se agrupan metodos que ayudan al registro de los usuarios
+    -registro: le pide al usuario que ingrese sus datos, despues se llama otro modulo
+    -login: se pide que ingrese su email y su correo
     """
 
     def registro(self):
-        print("Identificate por favor...\n")
+        print("\nLlene los siguienes campos...\n")
         nombre = input("Ingrese su nombre:")
         apellidos = input("Ingrese sus apellidos:")
         email = input("Ingrese su email:")
@@ -19,12 +21,56 @@ class Acciones:
 
         if registro[0] >= 1:
             print(
-                f"""Su registro es un exito
-            {registro[1].nombre} te has registrado con el email {registro[1].email}"""
+                f"""\nSu registro es un exito
+            {registro[1].nombre} te has registrado con el email {registro[1].email}\n"""
             )
+        else:
+            print("\nNo se ha podido registrar, el email ya esta en uso\n")
 
     def login(self):
-        print("Gracias por regresar, :)")
-        email = input("Ingrese su email:")
-        password = input("Ingrese su password:")
+        print("Ingresa los datos que te piden:\n")
+
+        try:
+            email = input("Ingrese su email:")
+            password = input("Ingrese su password:")
+            usuario = modelo.Usuario("", "", email, password, "")
+            login = usuario.identificar()
+            if email == login[3]:
+                print(
+                    f"\nTe damos la bienvenida {login[1]}, te registraste el {login[5]}\n"
+                )
+            self.acciones_siguientes()
+
+        except Exception:
+            # print(type(e))
+            # print(type(e).__name__)
+            print("\nCorreo o contraseña incorrectos\n")
+
+    def acciones_siguientes(self):
+        print(
+            f"""\nUsted puede realizar las siguientes acciones:
+
+                        · Crear nota (crear)
+                        · Mostrar notas (mostrar)
+                        · Eliminar nota (eliminar)
+                        · Salir (salir)\n
+        """
+        )
+        accion = input("¿Qué desea hacer? ")
+        accion = accion.upper()
+        if accion == "CREAR":
+            print("\nVamos a crear tu nota\n")
+            self.acciones_siguientes()
+        elif accion == "MOSTRAR":
+            print("\nTu nota:\n")
+            self.acciones_siguientes()
+        elif accion == "ELIMINAR":
+            print("\nEliminando nota...\n")
+            self.acciones_siguientes()
+        elif accion == "SALIR":
+            print("Regresa pronto :)\n")
+            exit()
+        else:
+            print("Ingrese una accion valida\n")
+            self.acciones_siguientes()
 
