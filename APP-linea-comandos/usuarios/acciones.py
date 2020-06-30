@@ -1,4 +1,5 @@
 import usuarios.usuario as modelo
+import notas.acciones
 
 
 class Acciones:
@@ -39,14 +40,14 @@ class Acciones:
                 print(
                     f"\nTe damos la bienvenida {login[1]}, te registraste el {login[5]}\n"
                 )
-            self.acciones_siguientes()
+                self.acciones_siguientes(login)
 
         except Exception:
             # print(type(e))
             # print(type(e).__name__)
             print("\nCorreo o contraseña incorrectos\n")
 
-    def acciones_siguientes(self):
+    def acciones_siguientes(self, usuario):
         print(
             f"""\nUsted puede realizar las siguientes acciones:
 
@@ -56,21 +57,24 @@ class Acciones:
                         · Salir (salir)\n
         """
         )
+        hacer_nota = notas.acciones.Acciones()  # se crea objeto para hacer nota
         accion = input("¿Qué desea hacer? ")
         accion = accion.upper()
         if accion == "CREAR":
             print("\nVamos a crear tu nota\n")
-            self.acciones_siguientes()
+            hacer_nota.crear(usuario)  # Se crea la nota
+            self.acciones_siguientes(usuario)
         elif accion == "MOSTRAR":
             print("\nTu nota:\n")
-            self.acciones_siguientes()
+            hacer_nota.mostrar(usuario)  # Se muestra nota
+            self.acciones_siguientes(usuario)
         elif accion == "ELIMINAR":
-            print("\nEliminando nota...\n")
-            self.acciones_siguientes()
+            hacer_nota.eliminar(usuario)  # se elimina nota
+            self.acciones_siguientes(usuario)
         elif accion == "SALIR":
             print("Regresa pronto :)\n")
             exit()
         else:
             print("Ingrese una accion valida\n")
-            self.acciones_siguientes()
+            self.acciones_siguientes(usuario)
 

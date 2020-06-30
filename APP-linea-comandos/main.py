@@ -24,4 +24,4 @@ if accion == "REGISTRO":
 elif accion == "LOGIN":
     hacer.login()
 else:
-    pass
+    print("Opcion no valida")
