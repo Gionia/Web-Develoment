@@ -30,6 +30,6 @@ class Calculadora:
         # ser usar numpy
         botones_ = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
         bo = boton.crear_bot()
-        botones_ = bo.crear_botones(marco4, color, color_letra, aritmetica)
+        botones_ = bo.crear_botones(marco4, color, color_letra, aritmetica, respuesta)
 
         cls.calculadora.mainloop()

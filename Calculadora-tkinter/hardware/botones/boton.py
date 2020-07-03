@@ -4,11 +4,15 @@ from tkinter import *
 class crear_bot:
     simbolo = ""
 
+    def operando(self, respuesta):
+        suma = str(eval(self.simbolo))
+        respuesta.set(suma)
+
     def escribir(self, simb, aritmetica):
         self.simbolo = self.simbolo + simb
         aritmetica = aritmetica.set(self.simbolo)
 
-    def crear_botones(self, marco, color, color_letra, aritmetica):
+    def crear_botones(self, marco, color, color_letra, aritmetica, respuesta):
 
         fila = [0, 0, 0, 0]
         col = [0, 1, 2, 3]
@@ -46,9 +50,14 @@ class crear_bot:
         boton = list(range(16))
         print(boton)
         for rows, columns, simb in cord_simb:
-            boton[i] = Button(marco, text=simb)
-            boton[i].config(
-                font=("Arial", 15), padx=25, pady=7, bg=color, fg=color_letra
+            boton[i] = Button(
+                marco,
+                text=simb,
+                font=("Arial", 15),
+                padx=25,
+                pady=7,
+                bg=color,
+                fg=color_letra,
             )
             boton[i].grid(row=rows, column=columns, padx=2, pady=2)
             i += 1
@@ -64,10 +73,10 @@ class crear_bot:
         boton[8].configure(command=lambda: self.escribir("1", aritmetica))
         boton[9].configure(command=lambda: self.escribir("2", aritmetica))
         boton[10].configure(command=lambda: self.escribir("3", aritmetica))
-        boton[11].configure(command=lambda: self.escribir("x", aritmetica))
+        boton[11].configure(command=lambda: self.escribir("*", aritmetica))
         boton[12].configure(command=lambda: self.escribir("0", aritmetica))
         boton[13].configure(command=lambda: self.escribir(".", aritmetica))
-        boton[14].configure(command=lambda: self.escribir("=", aritmetica))
+        boton[14].configure(command=lambda: self.operando(respuesta))
         boton[15].configure(command=lambda: self.escribir("/", aritmetica))
 
         return boton
