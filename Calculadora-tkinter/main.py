@@ -1,6 +1,10 @@
 from tkinter import *
 from hardware.calculadora import Calculadora
 
+"""
+Una simple calculadora creada con tkinter
+"""
+
 color = "#323a4d"  # color de la calculadora
 color_letra = "#dce0e8"
 color_solucion = "#27292e"
