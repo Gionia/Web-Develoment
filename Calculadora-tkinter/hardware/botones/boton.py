@@ -76,7 +76,7 @@ class crear_bot:
         boton[11].configure(command=lambda: self.escribir("*", aritmetica))
         boton[12].configure(command=lambda: self.escribir("0", aritmetica))
         boton[13].configure(command=lambda: self.escribir(".", aritmetica))
-        boton[14].configure(command=lambda: self.operando(respuesta))
+        boton[14].configure(command=lambda: self.operando(aritmetica))
         boton[15].configure(command=lambda: self.escribir("/", aritmetica))
 
         return boton
