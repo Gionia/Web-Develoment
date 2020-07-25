@@ -1,0 +1,12 @@
+.h2{
+    color: rgba(29, 44, 133, 0.842); 
+    }
+#header{
+
+    background-image: url("images/keyboard-5017973_1920.jpg");
+    background-size: contain;
+}
+
+.start_text{
+    color: white;
+}
