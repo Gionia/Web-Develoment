@@ -3,6 +3,8 @@ body{
 }
 
 header{
+    background-color:#ffff;
+    overflow: hidden;
     background-color: #252850;
     width: 100%;
     position:fixed;
@@ -11,10 +13,11 @@ header{
 
 nav{
     float: left;
+  
 }
 nav ul{
     list-style: none;
-    overflow: hidden;
+
 }
 
 nav ul li{
@@ -32,6 +35,7 @@ nav ul li a{
 
 nav ul li :hover{
     background-color: #3e5f8a;
+    
 }
 
 .h1{
@@ -43,12 +47,21 @@ nav ul li :hover{
     }
 
 #cont{
+    float: left;
     padding-top: 100px;
+    width: 75%;
+}
+aside{
+    padding-top: 100px;
+    float: left;
+    width: 20%;
 }
 
 .menu{
-    width: 50%;
   margin: auto;
   overflow:hidden;
 
+}
+.physicists{
+    float:right;
 }
